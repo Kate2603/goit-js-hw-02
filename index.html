@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Js hw 02</title>
+    <link rel="icon" href="images/4chan-color.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <h1>Js hw 02</h1>
+
+    <div>
+      <h2>1. Результати замовлення дроїдів</h2>
+    <div id="results1"></div>
+
+    <script src="./js/task-1.js"></script>
+    <script>
+      function makeTransaction(quantity, pricePerDroid, customerCredits) {
+        const totalPrice = quantity * pricePerDroid;
+
+        if (totalPrice > customerCredits) {
+          return 'Insufficient funds!';
+        } else {
+          return `You ordered ${quantity} droids worth ${totalPrice} credits!`;
+        }
+      }
+
+      // Отримуємо елемент для виводу результатів
+      const resultsDiv1 = document.getElementById('results1');
+
+      // Виклики функції та вивід результатів
+      resultsDiv1.innerHTML += `<p>${makeTransaction(5, 3000, 23000)}</p>`; // "You ordered 5 droids worth 15000 credits!"
+      resultsDiv1.innerHTML += `<p>${makeTransaction(3, 1000, 15000)}</p>`; // "You ordered 3 droids worth 3000 credits!"
+      resultsDiv1.innerHTML += `<p>${makeTransaction(10, 5000, 8000)}</p>`; // "Insufficient funds!"
+      resultsDiv1.innerHTML += `<p>${makeTransaction(8, 2000, 10000)}</p>`; // "Insufficient funds!"
+      resultsDiv1.innerHTML += `<p>${makeTransaction(10, 500, 5000)}</p>`; // "You ordered 10 droids worth 5000 credits!"
+    </script>
+    </div>
+
+    <div>
+      <h2>2. Результати форматування повідомлень</h2>
+    <div id="results2"></div>
+
+    <script src="./js/task-2.js"></script>
+    <script>
+      function formatMessage(message, maxLength) {
+        if (message.length <= maxLength) {
+          return message; // Повертаємо початковий рядок без змін
+        } else {
+          return message.slice(0, maxLength) + '...'; // Обрізаємо рядок і додаємо трикрапку
+        }
+      }
+
+      // Отримуємо елемент для виводу результатів
+      const resultsDiv2 = document.getElementById('results2');
+
+      // Виклики функції та вивід результатів
+      resultsDiv2.innerHTML += `<p>${formatMessage(
+        'Curabitur ligula sapien',
+        16
+      )}</p>`; // "Curabitur ligula..."
+      resultsDiv2.innerHTML += `<p>${formatMessage(
+        'Curabitur ligula sapien',
+        23
+      )}</p>`; // "Curabitur ligula sapien"
+      resultsDiv2.innerHTML += `<p>${formatMessage(
+        'Vestibulum facilisis purus nec',
+        20
+      )}</p>`; // "Vestibulum facilisis..."
+      resultsDiv2.innerHTML += `<p>${formatMessage(
+        'Vestibulum facilisis purus nec',
+        30
+      )}</p>`; // "Vestibulum facilisis purus nec"
+      resultsDiv2.innerHTML += `<p>${formatMessage(
+        'Nunc sed turpis a felis in nunc fringilla',
+        15
+      )}</p>`; // "Nunc sed turpis..."
+      resultsDiv2.innerHTML += `<p>${formatMessage(
+        'Nunc sed turpis a felis in nunc fringilla',
+        41
+      )}</p>`; // "Nunc sed turpis a felis in nunc fringilla"
+    </script>
+
+    </div>
+
+    <div>
+      <h2>3. Результати перевірки спаму</h1>
+    <div id="results3"></div>
+
+    <script src="./js/task-3.js"></script>
+    <script>
+        function checkForSpam(message) {
+            // Перевіряємо, чи містить повідомлення заборонені слова
+            const lowerCaseMessage = message.toLowerCase(); // Перетворюємо рядок на нижній регістр
+            return lowerCaseMessage.includes('spam') || lowerCaseMessage.includes('sale'); // Повертаємо true або false
+        }
+
+        // Отримуємо елемент для виводу результатів
+        const resultsDiv3 = document.getElementById('results3');
+
+        // Виклики функції та вивід результатів
+        resultsDiv3.innerHTML += `<p>${checkForSpam("Latest technology news")}</p>`; // false
+        resultsDiv3.innerHTML += `<p>${checkForSpam("JavaScript weekly newsletter")}</p>`; // false
+        resultsDiv3.innerHTML += `<p>${checkForSpam("Get best sale offers now!")}</p>`; // true
+        resultsDiv3.innerHTML += `<p>${checkForSpam("Amazing SalE, only tonight!")}</p>`; // true
+        resultsDiv3.innerHTML += `<p>${checkForSpam("Trust me, this is not a spam message")}</p>`; // true
+        resultsDiv3.innerHTML += `<p>${checkForSpam("Get rid of sPaM emails. Our book in on sale!")}</p>`; // true
+        resultsDiv3.innerHTML += `<p>${checkForSpam("[SPAM] How to earn fast money?")}</p>`; // true
+    </script>
+
+    </div>
+
+    <div>
+      <h2>4. Перевірка вартості доставки</h2>
+    <div id="results4"></div>
+
+    <script src="./js/task-4.js"></script>
+    <script>
+        // Оголошення функції getShippingCost
+        function getShippingCost(country) {
+            let price;
+
+            switch (country) {
+                case "China":
+                    price = 100;
+                    break;
+                case "Chile":
+                    price = 250;
+                    break;
+                case "Australia":
+                    price = 170;
+                    break;
+                case "Jamaica":
+                    price = 120;
+                    break;
+                default:
+                    return "Sorry, there is no delivery to your country";
+            }
+
+            return `Shipping to ${country} will cost ${price} credits`;
+        }
+
+        // Виклики функції та вивід результатів на сторінку
+        const resultsDiv4 = document.getElementById('results4');
+
+        resultsDiv4.innerHTML += `<p>${getShippingCost("Australia")}</p>`; // "Shipping to Australia will cost 170 credits"
+        resultsDiv4.innerHTML += `<p>${getShippingCost("Germany")}</p>`; // "Sorry, there is no delivery to your country"
+        resultsDiv4.innerHTML += `<p>${getShippingCost("China")}</p>`; // "Shipping to China will cost 100 credits"
+        resultsDiv4.innerHTML += `<p>${getShippingCost("Chile")}</p>`; // "Shipping to Chile will cost 250 credits"
+        resultsDiv4.innerHTML += `<p>${getShippingCost("Jamaica")}</p>`; // "Shipping to Jamaica will cost 120 credits"
+        resultsDiv4.innerHTML += `<p>${getShippingCost("Sweden")}</p>`; // "Sorry, there is no delivery to your country"
+    </script>
+    </div>
+
+   </body>
+</html>
